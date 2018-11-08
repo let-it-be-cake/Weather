@@ -1,7 +1,4 @@
 var weather = {
-  /*country: '',
-  temp: '',
-  clouds: ''*/
 }
 var url = 'https://api.openweathermap.org/data/2.5/weather?q='+ 'Moscow' +',' + 'ru' +'&appid=96df07f28842d4e02eaa7cb3535fd5f2';
 
@@ -14,7 +11,7 @@ function query(theUrl, theWeather) {
     	return; 
     }
     if (xhr.status != 200) {
-      console.log('Failed to get data from server. Check your request and try again');
+      console.log('Error? Error!');
     } else {
       var answer = JSON.parse(xhr.responseText);
       theWeather.country = answer.name;
