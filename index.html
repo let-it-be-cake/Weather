@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>g</title>
-</head>
-<body>
-	<div>
-		<p>City = </p>
-		<p>Temperature = </p>
-		<p>Clouds = </p>
-	</div>
-	<script src="js.js"></script>
-</body>
-</html>
+	<head>
+		<meta charset="UTF-8">
+		<title>g</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<div id = "inputCityName">
+			<p>Enter the name of the city</p>
+			<input class="input" id="city-name">
+		</div>
+		<div id="answer">
+			<div>
+				<p id="name"></p>
+				<p id="country"></p>
+			</div>
+			<div>
+				<p id="Temperature"></p>
+				<div>
+					<!--Выглядит уродски, но это переделается-->
+					<p id="MaxTemperature"></p>
+					<p id="MinTemperature"></p>
+				</div>
+			</div>
+			<p id="Clouds"></p>
+			<p id="Humidity"></p>
+			<p id="Pressure"></p>
+			<!--<ul>
+							<li><p>Show other</p></li>
+			</ul>-->
+		</div>
+		<div id="Other">
+			<input class="hide" id="hd-1" type="checkbox">
+			<label for="hd-1">Click to open other!</label>
+			<img src="arrow.png" alt="">
+			<div>
+				<p class="WeatherStats">1</p>
+				<p class="WeatherStats">2</p>
+				<p class="WeatherStats">3</p>
+				<p class="WeatherStats">4</p>
+				<p class="WeatherStats">5</p>
+				<p class="WeatherStats">6</p>
+				<p class="WeatherStats">7</p>
+				<p class="WeatherStats">8</p>
+				<p class="WeatherStats">9</p>
+				<p class="WeatherStats">1</p>
+				<p class="WeatherStats">2</p>
+				<p class="WeatherStats">3</p>
+				<p class="WeatherStats">4</p>
+				<p class="WeatherStats">5</p>
+				<p class="WeatherStats">6</p>
+			</div>
+			<script src="js.js"></script>
+		</body>
+	</html>
