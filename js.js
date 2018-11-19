@@ -1,84 +1,111 @@
-const ENTER_KEY_CODE = 13;
-var weather;
+const ENTER_KEY_CODE  = 13;
+var weather = {};
 var RoundingPrecision = 10000;
-var region = 'ru';
-var cityName = document.querySelector("#city-name");
-var xhr = new XMLHttpRequest();
-var OtherWeatherData = document.querySelector('#Other');
-// var xhrComplate = false;
+var region            = 'ru';
+var xhr               = new XMLHttpRequest();
 
 
+  var object12 = {};
+
+
+var OtherWeatherData  = document.querySelectorAll('.FullWeatherData');
+var Other             = document.querySelector('#Other');
+var cityName          = document.querySelector("#city-name");
+var name              = document.querySelector('#name');
+var country           = document.querySelector('#country');
+var temperature       = document.querySelector('#Temperature');
+var minTemperature    = document.querySelector('#MinTemperature');
+var maxTemperature    = document.querySelector('#MaxTemperature');
+var clouds            = document.querySelector('#Clouds');
+var humidity          = document.querySelector('#Humidity');
+var pressure          = document.querySelector('#Pressure');
+var mainWeather       = document.querySelector('#answer'); 
 
 function query(theUrl) {
-  xhr.open('GET', theUrl);
-  xhr.send();
-  xhr.addEventListener('readystatechange', function() {
-    if (xhr.readyState != xhr.DONE) {
-      return;
-    }
-    if (xhr.status != 200) {
-      console.log('Error? Error!');
-    } else {
-      var serverAnswer = JSON.parse(xhr.responseText);
-      console.log(serverAnswer);
-      OtherWeatherData.style.display = 'block';
-      requestAccepted(serverAnswer);
-      return serverAnswer;
-    }
-  })
+    xhr.open('GET', theUrl);
+    xhr.send();
+    xhr.addEventListener('readystatechange', function() {
+      if (xhr.readyState != xhr.DONE) {
+        return;
+      }
+      if (xhr.status != 200) {
+        console.log('Error? Error!');
+      } else {
+        weather = JSON.parse(xhr.responseText);
+        console.log(weather);
+        Other.style.display = 'block';
+        requestAccepted(weather);
+        return weather;
+      }
+  });
 }
-
 
 function requestAccepted(response){
   var weatherStatus = {};
-  weatherStatus.name = response.name;
-  weatherStatus.country = response.sys.country.toLowerCase();
-  weatherStatus.temp = response.main.temp;
-  weatherStatus.minTemp = response.main.temp_min;
-  weatherStatus.maxTemp = response.main.temp_max;
-  weatherStatus.clouds = response.clouds.all;
-  weatherStatus.humidity = response.main.humidity;
-  weatherStatus.pressure = response.main.pressure;
+  weatherStatus.name        = response.name;
+  weatherStatus.country     = response.sys.country.toLowerCase();
+  weatherStatus.temp        = response.main.temp;
+  weatherStatus.minTemp     = response.main.temp_min;
+  weatherStatus.maxTemp     = response.main.temp_max;
+  weatherStatus.clouds      = response.clouds.all;
+  weatherStatus.humidity    = response.main.humidity;
+  weatherStatus.pressure    = response.main.pressure;
   console.log(weatherStatus);
-  document.querySelector('#name').textContent = 'City = ' + weatherStatus.name;
-  document.querySelector('#country').textContent = 'Region = ' + weatherStatus.country;
-  document.querySelector('#Temperature').textContent = 'Temperature = ' + (Math.round((weatherStatus.temp - 273) * RoundingPrecision)) / RoundingPrecision;
-  document.querySelector('#MinTemperature').innerHTML = '<img src="Min.png" alt=""> = ' + (Math.round((weatherStatus.minTemp - 273) * RoundingPrecision)) / RoundingPrecision;
-  document.querySelector('#MaxTemperature').innerHTML = '<img src="Max.png" alt=""> = ' + (Math.round((weatherStatus.maxTemp - 273) * RoundingPrecision)) / RoundingPrecision;
-  document.querySelector('#Clouds').textContent = 'Clouds = ' + weatherStatus.clouds;
-  document.querySelector('#Humidity').textContent = 'Humidity = ' + weatherStatus.humidity;
-  document.querySelector('#Pressure').textContent = 'Pressure = ' + weatherStatus.pressure;
+  name.textContent          = 'City         = ' + weatherStatus.name;
+  country.textContent       = 'Region       = ' + weatherStatus.country;
+  temperature.textContent   = 'Temperature  = ' + (Math.round((weatherStatus.temp - 273) * RoundingPrecision)) / RoundingPrecision;
+  clouds.textContent        = 'Clouds       = ' + weatherStatus.clouds;
+  humidity.textContent      = 'Humidity     = ' + weatherStatus.humidity;
+  pressure.textContent      = 'Pressure     = ' + weatherStatus.pressure;
+  minTemperature.innerHTML  = '<img src="Min.png" alt=""> = ' + (Math.round((weatherStatus.minTemp - 273) * RoundingPrecision)) / RoundingPrecision;
+  maxTemperature.innerHTML  = '<img src="Max.png" alt=""> = ' + (Math.round((weatherStatus.maxTemp - 273) * RoundingPrecision)) / RoundingPrecision;
 }
 
-/*function OtherWeather(renameThisStatusRenameRename){
-  var renameThisStatusRenameRename = {};
-  function copyObj(renameThisStatusRenameRename) {
-  var a = {};
+
+// renameThisStatusRenameRename
+function OtherWeather(rTSRR) {
+  var FullInformationParrent = document.querySelector('#information');
+  var FullInformation;
   var i = 0;
-  for (var key in renameThisStatusRenameRename) {
-    if (typeof(renameThisStatusRenameRename[key]) == "object") {
-      a[key] = copyObj(renameThisStatusRenameRename[key]);
-    } else {
-      document.querySelectorAll(".WeatherStats")[i].textContent = key + ' = ' + renameThisStatusRenameRename[key];
-      a[key] = renameThisStatusRenameRename[key];
-      i++;
+  copyObj(rTSRR);
+
+  function copyObj(rTSRR) {
+    var key;
+    for (key in rTSRR) {
+      if (typeof(rTSRR[key]) == "object") {
+        copyObj(rTSRR[key]);
+      } else {
+        FullInformation = document.createElement('p');
+        FullInformation.textContent = key + ' = ' + rTSRR[key];
+        FullInformationParrent.appendChild(FullInformation);
+      }
     }
+    return;
   }
-  return a;
 }
-}
-*/
-function creatingUrl(name) {
+
+function creatingUrl(name, hui) {
   var FunctionUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + name.value + '&appid=96df07f28842d4e02eaa7cb3535fd5f2';
   return FunctionUrl;
 }
 cityName.addEventListener('keypress', function(e) {
   if (e.keyCode == ENTER_KEY_CODE) {
     var url = creatingUrl(cityName);
-    query(url);
+    // query(url);
+    object12 = query(url);
+    console.log(object12);
+    creatingUrl(cityName);
   }
 });
 
-OtherWeatherData.addEventListener('Click', function() {
+// promise
 
+OtherWeatherData[1].addEventListener('click', function() {
+  OtherWeather(weather);
+});
+OtherWeatherData[2].addEventListener('click', function() {
+  OtherWeather(weather);
+});
+OtherWeatherData[0].addEventListener('click', function() {
+  OtherWeather(weather);
 });

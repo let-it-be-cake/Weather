@@ -25,6 +25,10 @@ body{
 }
 .hide{
 	display: none;
+	/*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /* Internet Explorer */
+   	/*-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+  	/*-webkit-user-select: none; /* Chrome, Safari, and Opera */
 }
 .hide, .hide + label ~ div {
     visibility: hidden;
