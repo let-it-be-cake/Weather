@@ -1,30 +1,29 @@
 function showOtherWeatherInformation() {
-var OtherWeatherData  = document.querySelectorAll('.FullWeatherData');
-
+	var OtherWeatherData = document.querySelectorAll('.FullWeatherData');
 	OtherWeatherData[1].addEventListener('click', function() {
-		OtherWeather(weather);
+		showFullInformation(weather);
 	});
 	OtherWeatherData[2].addEventListener('click', function() {
-		OtherWeather(weather);
+		showFullInformation(weather);
 	});
 	OtherWeatherData[0].addEventListener('click', function() {
-		OtherWeather(weather);
+		showFullInformation(weather);
 	});
 
-	function OtherWeather(rTSRR) {
+	function showFullInformation(weatherFullInfo) {
 		var FullInformationParrent = document.querySelector('#information');
 		var FullInformation;
 		var i = 0;
-		copyObj(rTSRR);
+		detailedInformationAboutTheWeather(weatherFullInfo);
 
-		function copyObj(rTSRR) {
+		function detailedInformationAboutTheWeather(weatherFullInfo) {
 			var key;
-			for (key in rTSRR) {
-				if (typeof(rTSRR[key]) == "object") {
-					copyObj(rTSRR[key]);
+			for (key in weatherFullInfo) {
+				if (typeof(weatherFullInfo[key]) == "object") {
+					detailedInformationAboutTheWeather(weatherFullInfo[key]);
 				} else {
 					FullInformation = document.createElement('p');
-					FullInformation.textContent = key + ' = ' + rTSRR[key];
+					FullInformation.textContent = key + ' = ' + weatherFullInfo[key];
 					FullInformationParrent.appendChild(FullInformation);
 				}
 			}
