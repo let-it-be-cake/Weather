@@ -1,5 +1,7 @@
 (function controller() {
+    const constants = gettingConstants();
     var weather = {};
-    queryToServerAndShowWeather();
+    var domElements = accessingTheDom();
+    queryToServerAndShowWeather(domElements, constants);
     showOtherWeatherInformation();
 })()
