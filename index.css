@@ -1,0 +1,97 @@
+body, html{
+	padding: 0;
+	margin: 0;
+	font-family: arial;
+}
+body{
+	display: flex;
+	flex-direction: row;
+}
+#inputCityName{
+	min-width: 100px;
+}
+#answer{
+	padding-left: 5%;
+	min-width: 300px;
+}
+#answer > div{
+	display: flex;
+	align-items: center;
+}
+
+#Other{
+	display: none;
+	max-width: 600px;
+}
+.hide{
+	display: none;
+	/*-moz-user-select: none; /* Firefox */
+    /*-ms-user-select: none; /* Internet Explorer */
+   	/*-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+  	/*-webkit-user-select: none; /* Chrome, Safari, and Opera */
+}
+.hide, .hide + label ~ div {
+    visibility: hidden;
+    margin-top: 0px;
+    opacity: 0.1;
+    transition: visibility 0s 0.25s, margin-top 0.25s, opacity 0.25s;
+}
+.hide + label {
+    color: #3c3c3c;
+    cursor: pointer;
+}
+.hide:checked + label {
+   animation: fade ease-in-out 10s;
+}
+.hide:checked ~ img{
+	transform: rotate(180deg);
+	transition: transform 0.25s;
+}
+.hide ~ img{
+	transform: rotate(0);
+	transition: transform 0.25s;
+	display: inline-block;
+	width: 13px;
+}
+.hide:checked + label ~ div {
+    margin-top: 10px;
+    opacity: 1;
+    visibility: visible;
+    transition:visibility 0s, margin-top 0.25s, opacity 0.25s;
+}
+@keyframes fade {
+	from {
+		color: #3c3c3c;	
+	}
+	to {
+		color: #797979;
+	}
+}
+/*@keyframes rotate {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(180deg);
+	}
+}*/
+/*@keyframes appearance {
+	from {
+		margin-top: -10px;
+		opacity: 0.1;
+	}
+	to {
+		margin-top: 0;
+		opacity: 1;
+	}
+}
+@keyframes disappearance  {
+	from {
+		margin-top: 0;
+		/* opacity: 1; */
+	/*}
+	to {
+		margin-top: 10px;
+		/* opacity: 0.1; */
+	/*}
+}*/
