@@ -11,8 +11,8 @@ function showOtherWeatherInformation() {
 	});
 
 	function showFullInformation(weatherFullInfo) {
-		var FullInformationParrent = document.querySelector('#information');
-		var FullInformation;
+		var parrentInformationBlock = document.querySelector('#information');
+		var informationBlock;
 		var i = 0;
 		detailedInformationAboutTheWeather(weatherFullInfo);
 
@@ -22,9 +22,9 @@ function showOtherWeatherInformation() {
 				if (typeof(weatherFullInfo[key]) == "object") {
 					detailedInformationAboutTheWeather(weatherFullInfo[key]);
 				} else {
-					FullInformation = document.createElement('p');
-					FullInformation.textContent = key + ' = ' + weatherFullInfo[key];
-					FullInformationParrent.appendChild(FullInformation);
+					informationBlock = document.createElement('p');
+					informationBlock.textContent = key + ' = ' + weatherFullInfo[key];
+					parrentInformationBlock.appendChild(informationBlock);
 				}
 			}
 			return;
