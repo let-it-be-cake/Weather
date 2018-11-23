@@ -1,17 +1,16 @@
-function showOtherWeatherInformation() {
-	var OtherWeatherData = document.querySelectorAll('.FullWeatherData');
-	OtherWeatherData[1].addEventListener('click', function() {
+function showOtherWeatherInformation(domElements) {
+	domElements.otherWeatherData[1].addEventListener('click', function() {
+	console.log(domElements);
 		showFullInformation(weather);
 	});
-	OtherWeatherData[2].addEventListener('click', function() {
+	domElements.otherWeatherData[2].addEventListener('click', function() {
 		showFullInformation(weather);
 	});
-	OtherWeatherData[0].addEventListener('click', function() {
+	domElements.otherWeatherData[0].addEventListener('click', function() {
 		showFullInformation(weather);
 	});
 
 	function showFullInformation(weatherFullInfo) {
-		var parrentInformationBlock = document.querySelector('#information');
 		var informationBlock;
 		var i = 0;
 		detailedInformationAboutTheWeather(weatherFullInfo);
@@ -24,7 +23,7 @@ function showOtherWeatherInformation() {
 				} else {
 					informationBlock = document.createElement('p');
 					informationBlock.textContent = key + ' = ' + weatherFullInfo[key];
-					parrentInformationBlock.appendChild(informationBlock);
+					domElements.parrentInformationBlock.appendChild(informationBlock);
 				}
 			}
 			return;
